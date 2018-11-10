@@ -30,7 +30,7 @@ class DashboardPage extends React.Component {
         const programval = localStorage.getItem('programval')
         console.log("customer",customer);
         var _this = this;
-        fetch('http://ec2-13-233-30-90.ap-south-1.compute.amazonaws.com/app/api/getScore?', {
+        fetch('http://ec2-13-233-134-42.ap-south-1.compute.amazonaws.com/app/api/getScore?', {
             method: 'POST',
             body: JSON.stringify(customer)
         }).then(function (response) {
