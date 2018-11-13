@@ -37960,7 +37960,7 @@ var userService = exports.userService = {
 };
 
 function login(username, password) {
-    return fetch('http://ec2-13-233-134-42.ap-south-1.compute.amazonaws.com/app/postAuthorizeUser?', {
+    return fetch('http://ec2-13-233-180-15.ap-south-1.compute.amazonaws.com/app/postAuthorizeUser?', {
         method: 'POST',
         body: JSON.stringify({ "userName": username, "password": password })
     }).then(function (handleResponse) {
@@ -51746,7 +51746,7 @@ var DashboardPage = function (_React$Component) {
             var programval = localStorage.getItem('programval');
             console.log("customer", customer);
             var _this = this;
-            fetch('http://ec2-13-233-134-42.ap-south-1.compute.amazonaws.com/app/api/getScore?', {
+            fetch('http://ec2-13-233-180-15.ap-south-1.compute.amazonaws.com/app/api/getScore?', {
                 method: 'POST',
                 body: JSON.stringify(customer)
             }).then(function (response) {

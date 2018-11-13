@@ -6,7 +6,7 @@ export const userService = {
 };
 
 function login(username, password) {
-    return fetch('http://ec2-13-233-134-42.ap-south-1.compute.amazonaws.com/app/postAuthorizeUser?', {
+    return fetch('http://ec2-13-233-180-15.ap-south-1.compute.amazonaws.com/app/postAuthorizeUser?', {
         method: 'POST',
         body: JSON.stringify({ "userName": username, "password": password })
     }).then(function (handleResponse) {
