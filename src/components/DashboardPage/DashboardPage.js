@@ -58,7 +58,7 @@ class DashboardPage extends React.Component {
                 <div className="body_background">
                     <div className="container-fluid ">
                         <div className="row">
-                            <div className="col-sm-3">
+                            <div className="col-sm-4">
 
                               
                                        <VerticalTable tablehead = {"PL - Salary Advance"} heading = {[{field:"PAN Card",value:customer.pan},{field:"Name",value:customer.name},{field:"Age",value:customer.age},{field:"Loan Band",value:customer.loanBand},{field:"Tenure",value:customer.tenure},{field:"Residential/Office Stability",value:customer.residOffStabilty},{field:"Marital Status",value:customer.maritalStatus},{field:"Gender",value:customer.gender},{field:"Net Monthly Income",value:customer.netMonthlyIncome},{field:"Cibil Score",value:customer.cibilScore}]} panelHeight="650px"/>

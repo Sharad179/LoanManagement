@@ -14,6 +14,7 @@ import DashboardPage from '../DashboardPage/DashboardPage'
 import TopNav from '../TopNav/TopNav';
 import TopNavLogin from '../TopNav/TopNavLogin';
 import Footer from '../Footer/Footer';
+import WalletFinancePage from '../WalletFinancePage/WalletFinancePage'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -35,6 +36,7 @@ class MainPage extends React.Component {
                 <Route path="/home" component={HomePage} />
                 <Route path="/portfolio" component={ApplicationPage} />
                 <Route path="/dashboard" component={DashboardPage} />
+                <Route path="/walletFinance" component={WalletFinancePage} />
                 <Footer />
             </div>
         )
@@ -45,6 +47,7 @@ class MainPage extends React.Component {
                 <PrivateRoute path="/portfolio" component={DefaultContainer} />
                 <Route path="/login" component={LoginContainer} />
                 <PrivateRoute path="/dashboard" component={DefaultContainer} />
+                <PrivateRoute path="/walletFinance" component={DefaultContainer} />
             </div>
         )
     }

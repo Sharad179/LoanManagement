@@ -456,13 +456,13 @@ export class Salaried extends React.Component {
                                     </select>
                                 </Col>
                             </FormGroup></Col>
-                            <Col sm={6}>  <FormGroup controlId="formHorizontalState">
+                            {/* <Col sm={6}>  <FormGroup controlId="formHorizontalState">
                                 <Col componentClass={ControlLabel} sm={12}>
                                     <b  >Purpose of Loan</b></Col>
                                 <Col sm={12}>
                                     <FormControl type="text" name="purposeOfLoan" value={this.state.purposeOfLoan} onChange={this.handleChange} pattern="[A-Za-z\s]{1,100}" required />
                                 </Col>
-                            </FormGroup></Col>
+                            </FormGroup></Col> */}
 
                         </Row>
                         {/* <Row>
@@ -510,9 +510,11 @@ export class Salaried extends React.Component {
                         </Row>
                         <br />
                         <Row style={{ textAlign: "center" }}>
+                        <div className="col-md-6 offset-md-3">
                             <FormGroup>
-                                <input type="submit" value="Submit" className="btn btn-warning col-md-4 col-md-offset-4" />
+                                <input type="submit" value="Submit" className="btn btn-warning" />
                             </FormGroup>
+                            </div>
                         </Row>
                     </Form>
 

@@ -9,10 +9,12 @@ export class ContactComponent extends React.Component {
         return(
         <div className="portfolio_blue_part">
             <div className="container-fluid">
-                <div className="row ">
-                    <h3 className="portfolio_contact_text text-center">Contacts</h3>
-                    <hr className="hr_line1" />
-                    <div className="col-sm-4 ">
+            <h3 className="portfolio_contact_text" style={{textAlign:"center"}}>Contacts</h3>
+            <hr className="hr_line1" />
+                <div className="row">
+                    
+                   
+                    <div className="col-sm-4">
                         <p className="customer_text">Customer Service</p>
                         <div>
                             <img src="./images/manIcon.png" className="img-responsive man_icon" />

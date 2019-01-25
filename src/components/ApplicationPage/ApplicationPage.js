@@ -13,7 +13,7 @@ import { SelfEmployed } from './Selfemployed';
 class applicationPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { "segment": "salaried","program":"Income+CIBIL" };
+        this.state = { "segment": "salaried", "program": "Income+CIBIL" };
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -55,7 +55,7 @@ class applicationPage extends React.Component {
                             </div>
                             <div className="col-md-9">
                                 <div className="row">
-                                    <div className="col-md-3 col-md-offset-1">
+                                    <div className="col-md-3 offset-md-1">
                                         <h3 className="choose_portfolio_head" style={{ color: "white" }}>Select Segment</h3>
                                         <select value={this.state.segment} className="form-control" title="Select Segment" name="segment" onChange={this.handleChange} required>
                                             <option value="salaried">Salaried</option>
@@ -65,7 +65,7 @@ class applicationPage extends React.Component {
                                         </select>
                                     </div>
 
-                                    <div className="col-md-3 col-md-offset-4">
+                                    <div className="col-md-3 offset-md-4">
                                         <h3 className="choose_portfolio_head" style={{ color: "white" }}>Select Program</h3>
                                         <select value={this.state.program} className="form-control" title="Select Program" name="program" onChange={this.handleChange} required>
                                             <option value="Income+CIBIL">Income+CIBIL</option>
@@ -73,17 +73,17 @@ class applicationPage extends React.Component {
                                             <option value="CIBIL">CIBIL</option>
                                             <option value="Credit Card">Credit Card</option>
                                             <option value="Car type">Car type</option>
-                                      </select>
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-10 col-md-offset-1 form_part">
+                                    <div className="col-md-10 offset-md-1 form_part">
 
 
 
                                         <br />
                                         <div className="row">
-                                            {this.state.segment == "salaried" ? <Salaried userval = {user} programval = {this.state.program}/> : <SelfEmployed userval = {user} programval = {this.state.program}/>}
+                                            {this.state.segment == "salaried" ? <Salaried userval={user} programval={this.state.program} /> : <SelfEmployed userval={user} programval={this.state.program} />}
                                         </div>
 
                                     </div></div>
@@ -96,9 +96,10 @@ class applicationPage extends React.Component {
 
                 <div className="portfolio_blue_part">
                     <div className="container-fluid">
-                        <div className="row ">
-                            <h3 className="portfolio_contact_text text-center">Contacts</h3>
-                            <hr className="hr_line1" />
+                        <h3 className="portfolio_contact_text text-center">Contacts</h3>
+                        <hr className="hr_line1" />
+                        <div className="row">
+
                             <div className="col-sm-4 ">
                                 <p className="customer_text">Customer Service</p>
                                 <div>

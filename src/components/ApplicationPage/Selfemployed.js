@@ -104,9 +104,9 @@ export class SelfEmployed extends React.Component {
             alert("Age must be more than 21 years");
         }
         else {
-           
-            localStorage.setItem("customerObj",JSON.stringify(customer));
-            localStorage.setItem("programval",this.props.programval)
+
+            localStorage.setItem("customerObj", JSON.stringify(customer));
+            localStorage.setItem("programval", this.props.programval)
             window.location.href = "/dashboard";
         }
 
@@ -436,17 +436,13 @@ export class SelfEmployed extends React.Component {
                                     </select>
                                 </Col>
                             </FormGroup></Col>
-                            <Col sm={6}>  <FormGroup controlId="formHorizontalState">
+                            {/* <Col sm={6}>  <FormGroup controlId="formHorizontalState">
                                 <Col componentClass={ControlLabel} sm={12}>
                                     <b  >Purpose of Loan</b></Col>
                                 <Col sm={12}>
                                     <FormControl type="text" name="purposeOfLoan" value={this.state.purposeOfLoan} onChange={this.handleChange} pattern="[A-Za-z\s]{1,100}" required />
                                 </Col>
-                            </FormGroup></Col>
-
-                        </Row>
-                        <Row>
-
+                            </FormGroup></Col> */}
                             <Col sm={6}> <FormGroup controlId="formHorizontalCity">
                                 <Col componentClass={ControlLabel} sm={12}>
                                     <b  >Segment of the car</b></Col>
@@ -459,6 +455,10 @@ export class SelfEmployed extends React.Component {
                                     </select>
                                 </Col>
                             </FormGroup></Col>
+                        </Row>
+                        <Row>
+
+
                             <Col sm={6}> <FormGroup controlId="formHorizontalCity">
                                 <Col componentClass={ControlLabel} sm={12}>
                                     <b  >Car Ownership (If any)</b></Col>
@@ -469,9 +469,6 @@ export class SelfEmployed extends React.Component {
                                     </select>
                                 </Col>
                             </FormGroup></Col>
-                        </Row>
-                        <Row>
-
                             <Col sm={6}>  <FormGroup controlId="formHorizontalState">
                                 <Col componentClass={ControlLabel} sm={12}>
                                     <b>Car Maker</b></Col>
@@ -479,11 +476,15 @@ export class SelfEmployed extends React.Component {
                                     <FormControl type="text" name="carMaker" onChange={this.handleChange} value={this.state.carMaker} pattern="[A-Za-z\s]{1,100}" required />
                                 </Col>
                             </FormGroup></Col>
+                        </Row>
+                        <Row>
+
+                            
                             <Col sm={6}> <FormGroup controlId="formHorizontalCity">
                                 <Col componentClass={ControlLabel} sm={12}>
                                     <b  >Car Model</b></Col>
                                 <Col sm={12}>
-                                    <FormControl type="text" name="carModel" onChange={this.handleChange} value={this.state.carModel} pattern="[A-Za-z0-9\s]{1,100}"required />
+                                    <FormControl type="text" name="carModel" onChange={this.handleChange} value={this.state.carModel} pattern="[A-Za-z0-9\s]{1,100}" required />
                                 </Col>
                             </FormGroup></Col>
                         </Row>
@@ -492,9 +493,11 @@ export class SelfEmployed extends React.Component {
                         </Row>
                         <br />
                         <Row style={{ textAlign: "center" }}>
-                            <FormGroup>
-                                <input type="submit" value="Submit" className="btn btn-warning col-md-4 col-md-offset-4" />
-                            </FormGroup>
+                            <div className="col-md-6 offset-md-3">
+                                <FormGroup>
+                                    <input type="submit" value="Submit" className="btn btn-warning" />
+                                </FormGroup>
+                            </div>
                         </Row>
                     </Form>
 

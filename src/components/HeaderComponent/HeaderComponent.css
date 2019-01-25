@@ -1,0 +1,16 @@
+.partner_background{
+	background:#e0e9cc;
+	padding:20px;
+}
+.partner_text_head{
+	color:#252525;
+	font-size:46px;
+	font-family:'banner_font';
+	text-align:center;
+}
+.hr_line{
+	height:3px;
+	background:#90c036;
+	width:10%;
+	
+}
