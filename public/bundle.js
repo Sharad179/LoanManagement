@@ -62407,7 +62407,7 @@ var DashboardPage = function (_React$Component) {
                                     { className: 'row' },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'col-md-4' },
+                                        { className: 'col-md-5' },
                                         _react2.default.createElement(
                                             'div',
                                             { className: 'card card-signin my-5', style: { backgroundColor: '#F0F0F0' } },
@@ -62429,7 +62429,7 @@ var DashboardPage = function (_React$Component) {
                                     ),
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'col-md-8' },
+                                        { className: 'col-md-7' },
                                         _react2.default.createElement(
                                             'div',
                                             { className: 'card card-signin my-5', style: { backgroundColor: '#F0F0F0', height: "243px" } },
@@ -62971,15 +62971,15 @@ var GaugechartComponent = exports.GaugechartComponent = function (_React$Compone
                     plotBands: [{
                         from: 0,
                         to: 600,
-                        color: '#55BF3B' // green
+                        color: '#DF5353' // red
                     }, {
                         from: 600,
-                        to: 800,
+                        to: 750,
                         color: '#DDDF0D' // yellow
                     }, {
-                        from: 800,
+                        from: 750,
                         to: 1000,
-                        color: '#DF5353' // red
+                        color: '#55BF3B' // green
                     }]
                 },
                 series: [{
@@ -63536,7 +63536,7 @@ exports = module.exports = __webpack_require__(26)(false);
 
 
 // module
-exports.push([module.i, ".leftMargin{\n    margin-left:20px;\n}\n.leftMarginback{\n    margin-left:-20px;\n}\nth{\n    white-space: nowrap;\n}\n.leftRightMargin{\n    margin-left:20px;\n    margin-right:20px;\n}\n.dropdown-item.active{\n    color:blueviolet !important;\n    background: none !important;\n}\n\n.loader {\n    margin-left:380px;\n    border: 16px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 16px solid #3498db;\n    width: 120px;\n    height: 120px;\n    -webkit-animation: spin 2s linear infinite; /* Safari */\n    animation: spin 2s linear infinite;\n  }\n  .loaderTable {\n    margin-left:380px;\n    border: 16px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 16px solid #3498db;\n    width: 120px;\n    height: 120px;\n    -webkit-animation: spin 2s linear infinite; /* Safari */\n    animation: spin 2s linear infinite;\n  }\n  \n  /* Safari */\n  @-webkit-keyframes spin {\n    0% { -webkit-transform: rotate(0deg); }\n    100% { -webkit-transform: rotate(360deg); }\n  }\n  \n  @keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n  }\n  .partner_text_head_small{\n    color:#252525;\n\tfont-size:40px;\n\tfont-family:'banner_font';\n\ttext-align:center;\n  }\n  \n  tbody {\n    display:block;\n    height:270px;\n    overflow:auto;\n}\n\nthead, tbody tr {\n    display:table;\n    width:100%;\n    table-layout:fixed;/* even columns width , fix width of table too*/\n}\n\ntable {\n    width:400px;\n}", ""]);
+exports.push([module.i, ".leftMargin{\n    margin-left:20px;\n}\n.leftMarginback{\n    margin-left:-20px;\n}\nth{\n    white-space: nowrap;\n}\n.leftRightMargin{\n    margin-left:20px;\n    margin-right:20px;\n}\n.dropdown-item.active{\n    color:blueviolet !important;\n    background: none !important;\n}\n\n.loader {\n    margin-left:380px;\n    border: 16px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 16px solid #3498db;\n    width: 120px;\n    height: 120px;\n    -webkit-animation: spin 2s linear infinite; /* Safari */\n    animation: spin 2s linear infinite;\n  }\n  .loaderTable {\n    margin-left:380px;\n    border: 16px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 16px solid #3498db;\n    width: 120px;\n    height: 120px;\n    -webkit-animation: spin 2s linear infinite; /* Safari */\n    animation: spin 2s linear infinite;\n  }\n  \n  /* Safari */\n  @-webkit-keyframes spin {\n    0% { -webkit-transform: rotate(0deg); }\n    100% { -webkit-transform: rotate(360deg); }\n  }\n  \n  @keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n  }\n  .partner_text_head_small{\n    color:#252525;\n\tfont-size:40px;\n\tfont-family:'banner_font';\n\ttext-align:center;\n  }\n  \n  tbody {\n    display:block;\n    overflow:auto;\n}\n\nthead, tbody tr {\n    display:table;\n    width:100%;\n    table-layout:fixed;/* even columns width , fix width of table too*/\n}\n\ntable {\n    width:400px;\n}", ""]);
 
 // exports
 

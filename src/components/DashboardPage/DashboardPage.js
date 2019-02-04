@@ -99,7 +99,7 @@ class DashboardPage extends React.Component {
 
                                 <div className="row">&nbsp;</div>
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-5">
                                         <div className="card card-signin my-5" style={{ backgroundColor: '#F0F0F0' }}>
                                             <div className="card-body">
                                                 <h3 className="card-title text-centerchoose_portfolio_head"><b>RISK BASED FITMENT GRID</b></h3>
@@ -108,7 +108,7 @@ class DashboardPage extends React.Component {
                                                 </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-8">
+                                    <div className="col-md-7">
                                         <div className="card card-signin my-5" style={{ backgroundColor: '#F0F0F0',height:"243px" }}>
                                             <div className="card-body">
                                                 <h3 className="card-title text-centerchoose_portfolio_head"><b>INTELLI-MATCH (DEDUPING)</b></h3>
