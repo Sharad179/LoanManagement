@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Form, Row, Col, FormControl, FormGroup, ControlLabel, InputGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap';
 
 // import { userActions } from '../_actions';
-import '../HomePage/HomePage.css';
+import '../HomePage/Homepage.css';
 class HomePage extends React.Component {
     constructor(props) {
         super(props);

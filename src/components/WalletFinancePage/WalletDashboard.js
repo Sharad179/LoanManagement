@@ -18,7 +18,8 @@ export class WalletDashboardPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentId:"portfolioStats",
+            ewsdata:[],
+            currentId: "portfolioStats",
             showLoader: false,
             xValue: [],
             yAxisLabelPortfolio: [{
@@ -112,10 +113,10 @@ export class WalletDashboardPage extends React.Component {
         this.callApiPortfolio(this.state.currentId);
 
     }
-   
 
 
-   
+
+
     areaChartFunc(titleval, idval, xval, ylabel, seriesval) {
         var _this = this;
         var options = {
@@ -132,6 +133,41 @@ export class WalletDashboardPage extends React.Component {
                 shared: true
             },
             series: seriesval
+        }
+        Highcharts.chart(idval, options)
+    }
+    pieChartFunc(idval,chartdata) {
+        var options = {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Early Warning System'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Percentage',
+                colorByPoint: true,
+                data: chartdata
+            }]
         }
         Highcharts.chart(idval, options)
     }
@@ -154,177 +190,208 @@ export class WalletDashboardPage extends React.Component {
         if (this.state.branchValue) {
             params = params + "&Branch=" + this.state.branchValue;
         }
-       
-        _this.setState({showLoader:true})
-        fetch('http://ec2-13-233-180-15.ap-south-1.compute.amazonaws.com/app/api/portfolioTrend?' + params, {
 
-        }).then(function (handleResponse) {
-            return handleResponse.json()
-        }).then(function (user) {
-            _this.setState({showLoader:false})
-            _this.setState({
-                xValue: user.name, seriesPortfolio: [{
-                    name: '# of Contracts',
-                    type: 'spline',
-                    color: 'black',
-                    yAxis: 1,
-                    data: user.NoOfContract
-                }, {
-                    name: 'Disbursement',
-                    type: 'column',
-                    color: 'rgb(51, 181, 229,0.4)',
-                    data: user.LoanAmount
-                },
-                {
-                    name: 'OD amount',
-                    type: 'column',
-                    color: 'rgb(255, 0, 0,0.6)',
-                    data: user.OD
-                },
-                {
-                    name: 'Total Outstanding',
-                    type: 'column',
-                    color: 'rgb(0,255,0,0.6)',
-                    data: user.OutstandingAmount
-                }
-            ],
-                seriesSourcingQuality: [
-                    
-                    {
-                        name: 'Delq 30+ mob <4',
-                        type: 'spline',
-                        color: 'rgb(51, 181, 229)',
-                        data: user.Delq30LessThan4
-                    },
-                    {
-                        name: 'Delq 60+ mob <=12',
-                        type: 'spline',
-                        color: 'rgb(0, 100, 81)',
-                        data: user.Delq60LessThan12
-                    },
-                    {
-                        name: 'Delq 90+ mob <=12',
-                        type: 'spline',
-                        color: 'rgb(100, 200, 81)',
-                        data: user.Delq90LessThan12
-                    },
-                    
-                {
-                    name: 'WIRR',
-                    type: 'column',
-                    color: 'rgb(120, 200, 81,0.6)',
-                    data: user.WIRR
-                }
-                ], seriesCreditUnderwriting: [{
-                    name: 'Delq 30+ (Count)',
-                    type: 'spline',
-                    yAxis:1,
-                    color: 'rgb(255, 100, 100)',
-                    data: user.Delq30Count
-                },{
-                    name: 'Delq 30+ (Amount)',
-                    type: 'column',
-                    
-                    color: 'rgb(255, 100,100, 0.8)',
-                    data: user.Delq30Amount
-                }, 
-                {
-                    name: 'Delq 60+ (Count)',
-                    type: 'spline',
-                    yAxis:1,
-                    color: 'rgb(220, 140, 200)',
-                    data: user.Delq60Count
-                },
-                {
-                    name: 'Delq 60+ (Amount)',
-                    type: 'column',
-                    
-                    color: 'rgb(220, 140, 200, 0.8)',
-                    data: user.Delq60Amount
-                },
-                {
-                    name: 'Delq 90+ (Count)',
-                    type: 'spline',
-                    yAxis:1,
-                    color: 'rgb(120, 150, 140)',
-                    data: user.Delq90Count
-                },{
-                    name: 'Delq 90+ (Amount)',
-                    type: 'column',
-                    color: 'rgb(120, 150, 140, 0.8)',
-                    data: user.Delq90Amount
-                }
-            ]
+        _this.setState({ showLoader: true })
+        if (panel != 'earlywarningsystem') {
+            fetch('http://ec2-13-233-180-15.ap-south-1.compute.amazonaws.com/app/api/portfolioTrend?' + params, {
 
-            }, function () {
-                if (panel == "portfolioStats") {
-                    this.areaChartFunc("Portfolio Statistics", 'retrascore1', this.state.xValue, this.state.yAxisLabelPortfolio, this.state.seriesPortfolio)
-                }
-                else if (panel == "sourcingQuality") {
-                    this.areaChartFunc("Sourcing Quality", 'retrascore1', this.state.xValue, this.state.yAxisLabelSourcingQuality, this.state.seriesSourcingQuality);
-                }
-                else if (panel == "creditUnderWriting") {
-                    this.areaChartFunc("Credit Underwriting", 'retrascore1', this.state.xValue, this.state.yAxisLabelCreditUnderwriting, this.state.seriesCreditUnderwriting);
-                }
-                
+            }).then(function (handleResponse) {
+                return handleResponse.json()
+            }).then(function (user) {
+                _this.setState({ showLoader: false })
+                _this.setState({
+                    xValue: user.name, seriesPortfolio: [{
+                        name: '# of Contracts',
+                        type: 'spline',
+                        color: 'black',
+                        yAxis: 1,
+                        data: user.NoOfContract
+                    }, {
+                        name: 'Disbursement',
+                        type: 'column',
+                        color: 'rgb(51, 181, 229,0.4)',
+                        data: user.LoanAmount
+                    },
+                    {
+                        name: 'OD amount',
+                        type: 'column',
+                        color: 'rgb(255, 0, 0,0.6)',
+                        data: user.OD
+                    },
+                    {
+                        name: 'Total Outstanding',
+                        type: 'column',
+                        color: 'rgb(0,255,0,0.6)',
+                        data: user.OutstandingAmount
+                    }
+                    ],
+                    seriesSourcingQuality: [
+
+                        {
+                            name: 'Delq 30+ mob <4',
+                            type: 'spline',
+                            color: 'rgb(51, 181, 229)',
+                            data: user.Delq30LessThan4
+                        },
+                        {
+                            name: 'Delq 60+ mob <=12',
+                            type: 'spline',
+                            color: 'rgb(0, 100, 81)',
+                            data: user.Delq60LessThan12
+                        },
+                        {
+                            name: 'Delq 90+ mob <=12',
+                            type: 'spline',
+                            color: 'rgb(100, 200, 81)',
+                            data: user.Delq90LessThan12
+                        },
+
+                        {
+                            name: 'WIRR',
+                            type: 'column',
+                            color: 'rgb(120, 200, 81,0.6)',
+                            data: user.WIRR
+                        }
+                    ], seriesCreditUnderwriting: [{
+                        name: 'Delq 30+ (Count)',
+                        type: 'spline',
+                        yAxis: 1,
+                        color: 'rgb(255, 100, 100)',
+                        data: user.Delq30Count
+                    }, {
+                        name: 'Delq 30+ (Amount)',
+                        type: 'column',
+
+                        color: 'rgb(255, 100,100, 0.8)',
+                        data: user.Delq30Amount
+                    },
+                    {
+                        name: 'Delq 60+ (Count)',
+                        type: 'spline',
+                        yAxis: 1,
+                        color: 'rgb(220, 140, 200)',
+                        data: user.Delq60Count
+                    },
+                    {
+                        name: 'Delq 60+ (Amount)',
+                        type: 'column',
+
+                        color: 'rgb(220, 140, 200, 0.8)',
+                        data: user.Delq60Amount
+                    },
+                    {
+                        name: 'Delq 90+ (Count)',
+                        type: 'spline',
+                        yAxis: 1,
+                        color: 'rgb(120, 150, 140)',
+                        data: user.Delq90Count
+                    }, {
+                        name: 'Delq 90+ (Amount)',
+                        type: 'column',
+                        color: 'rgb(120, 150, 140, 0.8)',
+                        data: user.Delq90Amount
+                    }
+                    ]
+
+                }, function () {
+                    if (panel == "portfolioStats") {
+                        this.areaChartFunc("Portfolio Statistics", 'retrascore1', this.state.xValue, this.state.yAxisLabelPortfolio, this.state.seriesPortfolio)
+                    }
+                    else if (panel == "sourcingQuality") {
+                        this.areaChartFunc("Sourcing Quality", 'retrascore1', this.state.xValue, this.state.yAxisLabelSourcingQuality, this.state.seriesSourcingQuality);
+                    }
+                    else if (panel == "creditUnderWriting") {
+                        this.areaChartFunc("Credit Underwriting", 'retrascore1', this.state.xValue, this.state.yAxisLabelCreditUnderwriting, this.state.seriesCreditUnderwriting);
+                    }
+
+                })
             })
-        })
+        }
+        else {
+            fetch('http://ec2-13-233-180-15.ap-south-1.compute.amazonaws.com/app/api/portfolioEwsIndicator?' + params, {
 
+            }).then(function (handleResponse) {
+                return handleResponse.json()
+            }).then(function (user) {
+                _this.setState({ showLoader: false })
+                _this.setState({
+                    ewsdata: [{
+                        name: 'Red',
+                        y: user.RedCount,
+                        sliced: true,
+                        selected: true,
+                        color: 'rgb(255, 0, 0)',
+                    }, {
+                        name: 'Amber',
+                        y: user.AmberCount,
+                        color:'rgb(255, 153, 0)'
+                    }, {
+                        name: 'Green',
+                        y: user.GreenCount,
+                        color:'rgb(41, 106, 0)'
+                    }
+                    ]
+
+                }, function(){
+                    this.pieChartFunc("retrascore1",this.state.ewsdata)
+                })
+            })
+
+        }
     }
-
     handleSidebarClick(e) {
         $('.btn-primary').removeClass('active');
         $('#' + e.target.id).addClass('active');
-        this.setState({"currentId":e.target.id})
+        this.setState({ "currentId": e.target.id })
         this.callApiPortfolio(e.target.id)
     }
     handleChange(e) {
         if (e.target.name == 'Partner') {
-            
-            
-            this.setState({ partnerValue:e.target.value,RegionDisabled:false,StateDisabled: true, BranchDisabled: true, CityDisabled: true, RegionArray: getRegions(this.state.ResponseArray) },function(){
+
+
+            this.setState({ partnerValue: e.target.value, RegionDisabled: false, StateDisabled: true, BranchDisabled: true, CityDisabled: true, RegionArray: getRegions(this.state.ResponseArray) }, function () {
                 this.callApiPortfolio(this.state.currentId);
             })
-            
+
         }
         if (e.target.name == 'Region') {
-            
+
             this.state.stateValue = '';
             this.state.cityValue = '';
             this.state.branchValue = '';
-            
-            this.setState({ regionValue:e.target.value,StateDisabled: false, BranchDisabled:true,  CityDisabled: true, StateArray: getStates(this.state.ResponseArray, e.target.value) },function(){
+
+            this.setState({ regionValue: e.target.value, StateDisabled: false, BranchDisabled: true, CityDisabled: true, StateArray: getStates(this.state.ResponseArray, e.target.value) }, function () {
                 this.callApiPortfolio(this.state.currentId);
             })
         }
         if (e.target.name == 'State') {
-            
+
             this.state.cityValue = '';
             this.state.branchValue = '';
-            
-            this.setState({ stateValue:e.target.value,CityDisabled: false, BranchDisabled: true,  CityArray: getCities(this.state.ResponseArray, this.state.regionValue, e.target.value) },function(){
+
+            this.setState({ stateValue: e.target.value, CityDisabled: false, BranchDisabled: true, CityArray: getCities(this.state.ResponseArray, this.state.regionValue, e.target.value) }, function () {
                 this.callApiPortfolio(this.state.currentId);
             })
 
         }
         if (e.target.name == 'City') {
-            
+
             this.state.branchValue = '';
-            
-            this.setState({ cityValue:e.target.value, BranchDisabled: false, BranchArray: getBranches(this.state.ResponseArray, this.state.regionValue, this.state.stateValue, e.target.value) },function(){
+
+            this.setState({ cityValue: e.target.value, BranchDisabled: false, BranchArray: getBranches(this.state.ResponseArray, this.state.regionValue, this.state.stateValue, e.target.value) }, function () {
                 this.callApiPortfolio(this.state.currentId);
             })
         }
         if (e.target.name == 'Branch') {
-            
-            
-            this.setState({ branchValue:e.target.value },function(){
+
+
+            this.setState({ branchValue: e.target.value }, function () {
                 this.callApiPortfolio(this.state.currentId);
             })
         }
-        
+
         console.log(e.target.id);
-        
+
 
 
 
@@ -338,7 +405,7 @@ export class WalletDashboardPage extends React.Component {
             <div>
                 <form>
                     <div className="row" style={{ marginTop: "40px" }}>
-                    <div className="col-md-2 offset-md-1">
+                        <div className="col-md-2 offset-md-1">
                             <select className="form-control" onChange={this.handleChange} value={this.state.partnerValue} name="Partner">
                                 <option value="">All Partners</option>
                                 {this.state.PartnerArray.map((head, index) => {
@@ -378,7 +445,7 @@ export class WalletDashboardPage extends React.Component {
                                 })}
                             </select>
                         </div>
-                       
+
 
 
 
@@ -413,7 +480,16 @@ export class WalletDashboardPage extends React.Component {
 
                             </div>
                         </div>
-                        
+                        <div className="row ml-2 mt-4">
+                            <div className="col-md-2">
+
+                                <button type="button" className="btn btn-primary" style={{ width: "200px" }} id="earlywarningsystem" onClick={this.handleSidebarClick}>
+                                    Early Warning System </button>
+
+
+                            </div>
+                        </div>
+
                     </div>
                     <div className="col-md-8 offset-md-1">
 
@@ -430,7 +506,7 @@ export class WalletDashboardPage extends React.Component {
                             </div>
 
                         </div>
-                        
+
                     </div>
                 </div>
 
